@@ -1,10 +1,6 @@
 package praktikum;
 
-import net.datafaker.Faker;
 import org.junit.Test;
-
-import java.util.Random;
-
 import static org.junit.Assert.assertEquals;
 
 public class IngredientTest {
@@ -13,8 +9,7 @@ public class IngredientTest {
     @Test
     public void constructorSetCorrectName() {
         //Arrange
-        Faker faker = new Faker();
-        String expectedName = faker.text().text(3,8);
+        String expectedName = DataGenerator.randomName();
 
         //Act
         Ingredient ingredient = new Ingredient(IngredientType.FILLING, expectedName,100.0F);
@@ -27,8 +22,7 @@ public class IngredientTest {
     @Test
     public void constructorSetCorrectPrice() {
         //Arrange
-        Random random = new Random();
-        float expectedPrice = random.nextFloat() * 100.0F;
+        float expectedPrice = DataGenerator.randomPrice();
 
         //Act
         Ingredient ingredient = new Ingredient(IngredientType.SAUCE, "Test ingr", expectedPrice);
@@ -42,8 +36,7 @@ public class IngredientTest {
     @Test
     public void getNameReturnsCorrectName() {
         //Arrange
-        Faker faker = new Faker();
-        String expectedName = faker.text().text(3,8);
+        String expectedName = DataGenerator.randomName();
         Ingredient ingredient = new Ingredient(IngredientType.FILLING, expectedName,100.0F);
 
         //Act
@@ -58,8 +51,7 @@ public class IngredientTest {
     @Test
     public void getNameReturnsCorrectPrice() {
         //Arrange
-        Random random = new Random();
-        float expectedPrice = random.nextFloat() * 100.0F;
+        float expectedPrice = DataGenerator.randomPrice();
         Ingredient ingredient = new Ingredient(IngredientType.SAUCE, "Test ingr", expectedPrice);
 
         //Act

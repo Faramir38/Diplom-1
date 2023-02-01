@@ -1,8 +1,7 @@
 package praktikum;
 
-import net.datafaker.Faker;
 import org.junit.Test;
-import java.util.Random;
+
 import static org.junit.Assert.assertEquals;
 
 public class BunTest {
@@ -11,8 +10,7 @@ public class BunTest {
     @Test
     public void constructorSetCorrectName() {
         //Arrange
-        Faker faker = new Faker();
-        String expectedName = faker.text().text(3,8);
+        String expectedName = DataGenerator.randomName();
 
         //Act
         Bun bun = new Bun(expectedName, 100.0F);
@@ -26,8 +24,7 @@ public class BunTest {
     @Test
     public void constructorSetCorrectPrice() {
         //Arrange
-        Random random = new Random();
-        float expectedPrice = random.nextFloat() * 100;
+        float expectedPrice = DataGenerator.randomPrice();
 
         //Act
         Bun bun = new Bun("Test bun", expectedPrice);
@@ -42,8 +39,7 @@ public class BunTest {
     @Test
     public void getNameReturnsCorrectName() {
         //Arrange
-        Faker faker = new Faker();
-        String expectedResult = faker.text().text(3,8);
+        String expectedResult = DataGenerator.randomName();
         Bun bun = new Bun(expectedResult, 100.0F);
 
         //Act
@@ -57,8 +53,7 @@ public class BunTest {
     @Test
     public void getPriceReturnsCorrectPrice() {
         //Arrange
-        Random random = new Random();
-        float expectedResult = random.nextFloat() * 100;
+        float expectedResult = DataGenerator.randomPrice();
         Bun bun = new Bun("Test bun", expectedResult);
 
         //Act

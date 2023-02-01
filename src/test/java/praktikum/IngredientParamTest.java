@@ -1,11 +1,8 @@
 package praktikum;
 
-import net.datafaker.Faker;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
-import java.util.Random;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -32,10 +29,8 @@ public class IngredientParamTest {
     @Test
     public void constructorSetCorrectType() {
         //Arrange
-        Faker faker = new Faker();
-        String name = faker.text().text(3, 8);
-        Random random = new Random();
-        float price = random.nextFloat() * 100;
+        String name = DataGenerator.randomName();
+        float price = DataGenerator.randomPrice();
 
         //Act
         Ingredient ingredient = new Ingredient(ingredientType, name, price);
@@ -49,10 +44,8 @@ public class IngredientParamTest {
     @Test
     public void getTypeReturnsCorrectType() {
         //Arrange
-        Faker faker = new Faker();
-        String name = faker.text().text(3, 8);
-        Random random = new Random();
-        float price = random.nextFloat() * 100;
+        String name = DataGenerator.randomName();
+        float price = DataGenerator.randomPrice();
         Ingredient ingredient = new Ingredient(ingredientType, name, price);
 
         //Act
