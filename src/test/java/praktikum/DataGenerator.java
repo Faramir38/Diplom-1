@@ -2,8 +2,6 @@ package praktikum;
 
 import net.datafaker.Faker;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 //генерация случайных данных
@@ -26,18 +24,6 @@ public class DataGenerator {
     public static IngredientType randomType() {
         Faker faker = new Faker();
         return IngredientType.values()[faker.number().numberBetween(0, 2)];
-    }
-
-    //случайный список ингредиентов
-    public static List<TestIngredient> randomIngredients() {
-        Faker faker = new Faker();
-        List<TestIngredient> result = new ArrayList<>();
-
-        for (int i = 0; i < faker.number().numberBetween(1,10); i++) {
-            result.add(new TestIngredient(randomType(), randomName(), randomPrice()));
-        }
-
-        return result;
     }
 
 }
