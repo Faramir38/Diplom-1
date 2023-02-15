@@ -2,20 +2,42 @@ package praktikum;
 
 import net.datafaker.Faker;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 //генерация случайных данных
 public class DataGenerator {
 
     //случайное имя
     public static String randomName() {
-        Faker faker = new Faker();
-        return faker.text().text(3, 8);
+        Faker faker = new Faker(new Locale("ru"));
+        return faker.food().ingredient();
+
     }
 
     //случайная цена
     public static float randomPrice() {
-        Random random = new Random();
-        return random.nextFloat() * 100.0F;
+        Faker faker = new Faker();
+        return (float)faker.number().randomDouble(2, 0, 100);
     }
+
+    //случанйый тип
+    public static IngredientType randomType() {
+        Faker faker = new Faker();
+        return IngredientType.values()[faker.number().numberBetween(0, 2)];
+    }
+
+    //случайный список ингредиентов
+    public static List<TestIngredient> randomIngredients() {
+        Faker faker = new Faker();
+        List<TestIngredient> result = new ArrayList<>();
+
+        for (int i = 0; i < faker.number().numberBetween(1,10); i++) {
+            result.add(new TestIngredient(randomType(), randomName(), randomPrice()));
+        }
+
+        return result;
+    }
+
 }
