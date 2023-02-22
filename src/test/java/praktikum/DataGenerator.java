@@ -17,7 +17,7 @@ public class DataGenerator {
     //случайная цена
     public static float randomPrice() {
         Faker faker = new Faker();
-        return (float)faker.number().randomDouble(2, 0, 100);
+        return (float) faker.number().randomDouble(2, 0, 100);
     }
 
     //случанйый тип
@@ -25,5 +25,4 @@ public class DataGenerator {
         Faker faker = new Faker();
         return IngredientType.values()[faker.number().numberBetween(0, 2)];
     }
-
 }

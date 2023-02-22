@@ -1,6 +1,7 @@
 package praktikum;
 
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 public class IngredientTest {
@@ -12,7 +13,7 @@ public class IngredientTest {
         String expectedName = DataGenerator.randomName();
 
         //Act
-        Ingredient ingredient = new Ingredient(IngredientType.FILLING, expectedName,100.0F);
+        Ingredient ingredient = new Ingredient(IngredientType.FILLING, expectedName, 100.0F);
         String actualName = ingredient.name;
 
         //Assert
@@ -37,14 +38,13 @@ public class IngredientTest {
     public void getNameReturnsCorrectName() {
         //Arrange
         String expectedName = DataGenerator.randomName();
-        Ingredient ingredient = new Ingredient(IngredientType.FILLING, expectedName,100.0F);
+        Ingredient ingredient = new Ingredient(IngredientType.FILLING, expectedName, 100.0F);
 
         //Act
         String actualName = ingredient.getName();
 
         //Assert
         assertEquals("getName возвращает неверное имя", expectedName, actualName);
-
     }
 
     //getName
@@ -59,8 +59,5 @@ public class IngredientTest {
 
         //Assert
         assertEquals("getPrice возвращает неверную price", expectedPrice, actualPrice, 0);
-
     }
-
-
 }

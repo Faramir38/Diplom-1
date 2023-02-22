@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertFalse;
@@ -15,80 +16,6 @@ import static org.mockito.Mockito.spy;
 @RunWith(MockitoJUnitRunner.class)
 public class BurgerTest {
 
-    //setBuns
-   @Test
-    public void setBunsSetCorrectBun() {
-        //Arrange
-        Bun bun = new Bun(DataGenerator.randomName(), DataGenerator.randomPrice());
-        Burger burger = new Burger();
-
-        //Act
-        burger.setBuns(bun);
-
-        //Assert
-        assertThat("Burger.bun передан некорректно", burger.bun, equalTo(bun));
-
-    }
-
-    //addIngredient
-    @Test
-    public void shouldAddIngredient() {
-
-       //Arrange
-       Ingredient ingredient = new Ingredient(DataGenerator.randomType(), DataGenerator.randomName(),
-               DataGenerator.randomPrice());
-       Burger burger = new Burger();
-
-       //Act
-       burger.addIngredient(ingredient);
-
-       //Assert
-       assertTrue("Элемент не добавлен в ingredients", burger.ingredients.contains(ingredient));
-
-    }
-
-    //removeIngredient
-    @Test
-    public void shouldRemoveIngredient() {
-
-       //Arrange
-        Ingredient ingredient = new Ingredient(DataGenerator.randomType(), DataGenerator.randomName(),
-                DataGenerator.randomPrice());
-        Burger burger = new Burger();
-        burger.addIngredient(ingredient);
-        int indexForRemove = burger.ingredients.indexOf(ingredient);
-
-       //Act
-        burger.removeIngredient(indexForRemove);
-       //Assert
-        assertFalse("Элемент не удалён из ingredients", burger.ingredients.contains(ingredient));
-    }
-
-    //moveIngredient
-    @Test
-    public void shouldMoveIngredient() {
-
-       //Arrange
-        Burger burger = new Burger();
-        Ingredient ingredient1 = new Ingredient(DataGenerator.randomType(), DataGenerator.randomName(),
-                DataGenerator.randomPrice());
-        burger.addIngredient(ingredient1);
-        Ingredient ingredient2 = new Ingredient(DataGenerator.randomType(), DataGenerator.randomName(),
-                DataGenerator.randomPrice());
-        burger.addIngredient(ingredient2);
-        int indexMoveTo = 1;
-
-        //Act
-        burger.moveIngredient(burger.ingredients.indexOf(ingredient1), indexMoveTo);
-
-        //Assert
-        assertThat("Элемент не перемёщен в ingredients", burger.ingredients.indexOf(ingredient1),
-                equalTo(indexMoveTo));
-
-
-
-    }
-
     //getPrice
     //мокаем burger и ingredient
     //считаем - сравниваем
@@ -96,6 +23,68 @@ public class BurgerTest {
     Bun bunMock;
     @Mock
     Ingredient ingredientMock;
+    @Mock
+    Ingredient ingredientMock2;
+
+    //setBuns
+    @Test
+    public void setBunsSetCorrectBun() {
+        //Arrange
+        Burger burger = new Burger();
+
+        //Act
+        burger.setBuns(bunMock);
+
+        //Assert
+        burger.bun.getName();
+        Mockito.verify(bunMock).getName();
+    }
+
+    //addIngredient
+    @Test
+    public void shouldAddIngredient() {
+        //Arrange
+        Burger burger = new Burger();
+
+        //Act
+        burger.addIngredient(ingredientMock);
+
+        //Assert
+        assertTrue("Элемент не добавлен в ingredients", burger.ingredients.contains(ingredientMock));
+    }
+
+    //removeIngredient
+    @Test
+    public void shouldRemoveIngredient() {
+        //Arrange
+        Burger burger = new Burger();
+        burger.addIngredient(ingredientMock);
+        burger.addIngredient(ingredientMock2);
+        int indexForRemove = burger.ingredients.indexOf(ingredientMock);
+
+        //Act
+        burger.removeIngredient(indexForRemove);
+
+        //Assert
+        assertFalse("Элемент не удалён из ingredients", burger.ingredients.contains(ingredientMock));
+    }
+
+    //moveIngredient
+    @Test
+    public void shouldMoveIngredient() {
+        //Arrange
+        Burger burger = new Burger();
+        burger.addIngredient(ingredientMock);
+        burger.addIngredient(ingredientMock2);
+        int indexMoveTo = 1;
+
+        //Act
+        burger.moveIngredient(burger.ingredients.indexOf(ingredientMock), indexMoveTo);
+
+        //Assert
+        assertThat("Элемент не перемёщен внутри ingredients", burger.ingredients.indexOf(ingredientMock),
+                equalTo(indexMoveTo));
+    }
 
     @Test
     public void getPriceReturnsCorrectPrice() {
@@ -114,8 +103,6 @@ public class BurgerTest {
 
         //Assert
         assertThat("Ожидаемая цена burger не равна полученной", actualPrice, equalTo(expectedPrice));
-
-
     }
 
     //getReceipt
@@ -147,9 +134,5 @@ public class BurgerTest {
 
         //Assert
         assertThat("Строка рецепта выводится неверно", actualString, equalTo(expectedString));
-
     }
-
-
-
 }

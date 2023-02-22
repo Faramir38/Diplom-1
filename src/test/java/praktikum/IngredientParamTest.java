@@ -19,7 +19,7 @@ public class IngredientParamTest {
 
     @Parameterized.Parameters(name = "Тестовые данные: {0}")
     public static Object[][] getData() {
-        return new Object[][] {
+        return new Object[][]{
                 {IngredientType.SAUCE},
                 {IngredientType.FILLING}
         };
@@ -53,7 +53,6 @@ public class IngredientParamTest {
 
         //Assert
         assertThat("getType возвращает неверный тип ингредиента", actual, equalTo(ingredientType));
-
     }
 
 

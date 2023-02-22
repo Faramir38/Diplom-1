@@ -17,7 +17,6 @@ public class BunTest {
 
         //Assert
         assertEquals("Конструктор устанавливает неверный name", expectedName, bun.name);
-
     }
 
     //constructor (price)
@@ -31,7 +30,6 @@ public class BunTest {
 
         //Assert
         assertEquals("Конструктор устанавливает неверный price", expectedPrice, bun.price, 0.0);
-
     }
 
 
@@ -61,7 +59,5 @@ public class BunTest {
 
         //Arrange
         assertEquals("getPrice возвращает неверное значение", expectedResult, actualResult, 0.0);
-
-
     }
 }
